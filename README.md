@@ -1,3 +1,30 @@
+请使用ubuntu20.04编译grpc，不要使用ubuntu18.04
+
+在20.04系统下，make install时向/usr/local/lib/cmake文件夹拷贝的内容有：
+```
+-- Up-to-date: /usr/local/lib/cmake/grpc/gRPCTargets.cmake
+-- Up-to-date: /usr/local/lib/cmake/grpc/gRPCTargets-noconfig.cmake
+-- Up-to-date: /usr/local/lib/cmake/grpc/gRPCPluginTargets.cmake
+-- Up-to-date: /usr/local/lib/cmake/grpc/gRPCPluginTargets-noconfig.cmake
+-- Up-to-date: /usr/local/lib/cmake/grpc/gRPCConfig.cmake
+-- Up-to-date: /usr/local/lib/cmake/grpc/gRPCConfigVersion.cmake
+-- Up-to-date: /usr/local/lib/cmake/grpc/modules/Findc-ares.cmake
+-- Up-to-date: /usr/local/lib/cmake/grpc/modules/Findre2.cmake
+-- Up-to-date: /usr/local/lib/cmake/grpc/modules/Findsystemd.cmake
+```
+
+而在18.04系统下，向/usr/local/lib/cmake文件夹拷贝的内容是：
+```
+-- Up-to-date: /usr/local/lib/cmake/grpc/gRPCConfig.cmake
+-- Up-to-date: /usr/local/lib/cmake/grpc/gRPCConfigVersion.cmake
+-- Up-to-date: /usr/local/lib/cmake/grpc/modules/Findc-ares.cmake
+-- Up-to-date: /usr/local/lib/cmake/grpc/modules/Findre2.cmake
+-- Up-to-date: /usr/local/lib/cmake/grpc/modules/Findsystemd.cmake
+```
+少了几个文件。缺少的这几个文件会导致cmake找不到grpc的库
+
+———————————————————————————————————————————————————
+
 # gRPC – An RPC library and framework
 
 gRPC is a modern, open source, high-performance remote procedure call (RPC)
